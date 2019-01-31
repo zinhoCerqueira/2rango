@@ -1,0 +1,47 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>produto</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form novalidate [formGroup] = "registerForm"(ngSubmit) = "enviarProduto()">
+        <ion-list>
+
+          <ion-item>
+            <ion-input type = "text" placeholder = "Nome" 
+            formControlName="nomeProduto" ></ion-input> 
+          </ion-item>
+
+          <ion-item>
+            <ion-input type = "text" placeholder = "Categoria"
+            formControlName="categoria"></ion-input> 
+          </ion-item>
+
+          <ion-item>
+              <ion-input type = "text" placeholder = "Descrição"
+              formControlName="descricao"></ion-input> 
+          </ion-item>
+
+          <ion-item>
+            <ion-label  color="dark">Disponível</ion-label>
+            <ion-select formControlName = "disponivel">
+              <ion-option value="sim">Sim</ion-option>
+              <ion-option value="nao">Não</ion-option>             
+            </ion-select> 
+          </ion-item>
+
+          <ion-item>
+              <ion-input type = "text" placeholder = "Preço"
+              formControlName="preco"></ion-input> 
+          </ion-item>
+          
+        </ion-list>
+        <div padding >
+          <button type = "submit" ion-button [disabled] = "registerForm.invalid" >Concluir</button>
+        </div>
+      </form>
+</ion-content>

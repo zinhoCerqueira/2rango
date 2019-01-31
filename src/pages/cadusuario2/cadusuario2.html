@@ -1,0 +1,72 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Dados de Negócio</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+
+    <form novalidate [formGroup] = "registerForm"(ngSubmit) = "enviarConta()">
+    <ion-list>
+
+      <ion-item>
+        <ion-input type = "text" placeholder = "Nome do Negócio" 
+        formControlName="nomeNegocio" ></ion-input> 
+      </ion-item>
+
+      <ion-item>
+          <ion-input type = "text" placeholder = "Telefone" 
+          formControlName="telefone" ></ion-input> 
+      </ion-item>
+
+      <ion-item>
+          <ion-input type = "text" placeholder = "Endereço" 
+          formControlName="endereco" ></ion-input> 
+      </ion-item>
+
+      <ion-item>
+          <ion-input type = "text" placeholder = "Categoria" 
+          formControlName="categoria" ></ion-input> 
+      </ion-item>
+
+      <ion-item>
+          <ion-input type = "text" placeholder = "Limite de Distância" 
+          formControlName="limiteDistancia" ></ion-input> 
+      </ion-item>
+
+      <ion-item>
+          <ion-input type = "text" placeholder = "Valor do Frete por Km" 
+          formControlName="valorFrete" ></ion-input> 
+      </ion-item>
+
+      <ion-item>
+          <ion-input type = "text" placeholder = "Nome do Representante" 
+          formControlName="nomeRepresentante" ></ion-input> 
+      </ion-item>
+
+      <ion-item>
+          <ion-label  color="dark">Sexo</ion-label>
+          <ion-select formControlName = "sexo">
+            <ion-option value="feminino">Feminino</ion-option>
+            <ion-option value="masculino">Masculino</ion-option>             
+          </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label  color="dark">Forma de Pagamento</ion-label>
+        <ion-select multiple formControlName = "formaPagamento">
+          <ion-option value="card">Cartão de Crédito</ion-option>
+          <ion-option value="cash">Dinheiro</ion-option>
+          <ion-option value="ticket">Ticket Alimentação</ion-option>
+        </ion-select>
+      </ion-item>
+
+    </ion-list>
+    <div padding >
+      <button type = "submit" ion-button [disabled] = "registerForm.invalid" >Criar Conta</button>
+    </div>
+  </form>
+
+
+</ion-content>
