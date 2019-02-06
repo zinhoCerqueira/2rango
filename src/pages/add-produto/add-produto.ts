@@ -28,19 +28,26 @@ export class AddProdutoPage {
                 categoria: [null, [Validators.required, Validators.minLength(3)]],
                 descricao: [null, [Validators.required, Validators.minLength(3)]],
                 disponivel: [null, [Validators.required]],
-                preco: [null, [Validators.required]]
+                preco: [null, [Validators.required]],
+                uidVendedor : [null]
               })
   }
 
   ionViewDidLoad() {
     this.storage.get('user')
     .then((resolve) => {
-      this.uid = resolve;
+      if(resolve.length > 0){
+        this.uid = resolve;
+      }
+      else{
+        console.log("essa porra é lenta pacarai")
+      }
     })
   }
-
+/// pera
   enviarProduto(){
-    this.db.database.ref('/Produto').child(this.uid).push(this.registerForm.value)
+    this.registerForm.patchValue({uidVendedor : this.uid})
+    this.db.database.ref('/Produto').push(this.registerForm.value)
     .then(() => {
       console.log('Salvou');
       this.navCtrl.setRoot('HomePage');

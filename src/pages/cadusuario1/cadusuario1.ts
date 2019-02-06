@@ -21,8 +21,8 @@ export class Cadusuario1Page {
               public formbuilder: FormBuilder,
               public afAufh : AngularFireAuth,
               public alertCtrl : AlertController
-              ) {
-
+              ) 
+              {
   this.registerForm = this.formbuilder.group({
     email: [null, [Validators.required, Validators.minLength(7)]],
     senha: [null, [Validators.required, Validators.minLength(6)]],

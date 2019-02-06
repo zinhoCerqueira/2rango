@@ -32,20 +32,27 @@ export class Cadusuario2Page {
       valorFrete : [null, [Validators.required]],
       nomeRepresentante : [null, [Validators.required , Validators.minLength(3)]],
       sexo : [null, [Validators.required]],
-      formaPagamento : [null, [Validators.required]]
+      formaPagamento : [null, [Validators.required]],
+      uidVendedor : [null]
     })
   }
 
   ionViewDidLoad() {
     this.storage.get('user')
     .then((resolve) => {
-      this.uid = resolve;
-      console.log(this.uid);
+      if(resolve.length > 0){
+        this.uid = resolve;
+        console.log(this.uid);
+      }
+      else{
+        console.log("essa porra é lenta pacarai")
+      }
     })
   }
 
   enviarConta(){
-    this.db.database.ref('/Vendedor').child(this.uid).push(this.registerForm.value)
+    this.registerForm.patchValue({uidVendedor : this.uid})
+    this.db.database.ref('/Vendedor').push(this.registerForm.value)
     .then(() => {
       console.log('Salvou');
       this.navCtrl.setRoot('HomePage');

@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 import { AddProdutoPage } from '../add-produto/add-produto';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { ProdutoPage } from '../produto/produto';
+import firebase from 'firebase';
 
 
 @IonicPage({
@@ -15,8 +16,11 @@ import { ProdutoPage } from '../produto/produto';
 })
 export class HomePage {
 
-  uid : string;
-  list;
+  
+  list = [];
+  uid;
+  finalList = [];
+
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               public storage : Storage,
@@ -26,8 +30,13 @@ export class HomePage {
   ionViewDidLoad() {
     this.storage.get('user')
     .then((resolve) => {
-      this.uid = resolve;
-      this.getLista();
+      if(resolve.length > 0){
+        this.uid = resolve;
+        this.getLista();
+      }
+      else{
+        console.log("essa porra é lenta pacarai")
+      }
     })
   }
 
@@ -36,22 +45,22 @@ export class HomePage {
   }
 
   openProduto(item: any){
-    //this.navCtrl.push(ProdutoPage, {data : item});
+    this.navCtrl.push(ProdutoPage, {data : item});
     console.log(item);
   }
-  
-  getLista(){ 
-    let listaDB = this.db.database.ref('/Produto').child(this.uid);
-    listaDB.on('value', (snapshot) => {
-      const itens = snapshot.val();
-      if(itens){
-        this.list = Object.keys(itens).map(i => itens[i])
-        //testando as keys
-        //console.log(Object.keys(itens));
+
+  getLista(){
+    let listaDB = this.db.database.ref('/Produto');
+    const query = listaDB.orderByChild('uidVendedor').equalTo(this.uid);
+    query.on('value', (snapshot) => {
+      this.list = snapshot.val();
+
+      let keys = Object.keys(this.list)
+      for(let i=0;i<keys.length;i++){
+        this.finalList.push(this.list[keys[i]]);
       }
-      
+
     })
-  
   }
 
 }

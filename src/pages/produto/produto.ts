@@ -44,12 +44,7 @@ export class ProdutoPage {
   }
 
   enviarProduto(){
-  
-    this.db.database.ref('/Produto').child(this.uid).push(this.registerForm.value)
-    .then(() => {
-      console.log('Salvou');
-      this.navCtrl.setRoot('HomePage');
-    })
+
   }
   
 
