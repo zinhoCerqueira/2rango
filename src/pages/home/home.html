@@ -20,6 +20,11 @@
       <div class="card-title"> Adicionar Produto </div>
     </button>
 
+    <button ion-button color="dark" outline (click)="pendentes()" >
+        <ion-icon name = "add-circle" item-start > </ion-icon>
+        <div class="card-title"> Produtos Pendentes </div>
+    </button>
+
     <div padding>
       <ion-card *ngFor = "let item of finalList" margin >
         <ion-card-title>

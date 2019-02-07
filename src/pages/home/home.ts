@@ -4,7 +4,7 @@ import { Storage } from '@ionic/storage';
 import { AddProdutoPage } from '../add-produto/add-produto';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { ProdutoPage } from '../produto/produto';
-import firebase from 'firebase';
+import { PendentesPage } from '../pendentes/pendentes';
 
 
 @IonicPage({
@@ -16,9 +16,8 @@ import firebase from 'firebase';
 })
 export class HomePage {
 
-  
   list = [];
-  uid;
+  uid : string;
   finalList = [];
 
   constructor(public navCtrl: NavController, 
@@ -56,11 +55,14 @@ export class HomePage {
       this.list = snapshot.val();
 
       let keys = Object.keys(this.list)
-      for(let i=0;i<keys.length;i++){
+      for(let i=0; i<keys.length; i++){
         this.finalList.push(this.list[keys[i]]);
       }
 
     })
   }
 
+  pendentes(){
+    this.navCtrl.push(PendentesPage);
+  }
 }

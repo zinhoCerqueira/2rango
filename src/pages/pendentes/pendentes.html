@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>pendentes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngFor = "let item of finalList" margin >
+    <ion-card-title>
+      {{item.nomeProduto}}
+    </ion-card-title>
+    <ion-card-content>
+      <button ion-button outline item-end icon-end (click) = "verPedido(item)">
+        <ion-icon name="archive" ></ion-icon>
+        Ver Pedido
+      </button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

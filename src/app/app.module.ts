@@ -13,13 +13,17 @@ import { AddProdutoPage } from '../pages/add-produto/add-produto';
 
 import { MyApp } from './app.component';
 import { ProdutoPage } from '../pages/produto/produto';
+import { PendentesPage } from '../pages/pendentes/pendentes';
+import { DetalheProdutoPage } from '../pages/detalhe-produto/detalhe-produto';
 
 
 @NgModule({
   declarations: [
     MyApp,
     AddProdutoPage,
-    ProdutoPage
+    ProdutoPage,
+    PendentesPage,
+    DetalheProdutoPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,9 @@ import { ProdutoPage } from '../pages/produto/produto';
   entryComponents: [
     MyApp,
     AddProdutoPage,
-    ProdutoPage
+    ProdutoPage,
+    PendentesPage,
+    DetalheProdutoPage
   ],
   providers: [
     StatusBar,
