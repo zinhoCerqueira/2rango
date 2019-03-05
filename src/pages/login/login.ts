@@ -60,4 +60,19 @@ export class LoginPage {
     });
     alert.present();
   }
+
+  ionViewCanEnter(){
+    this.storage.get('user')
+    .then((resolve) => {
+      if(resolve.length > 0){
+        this.navCtrl.setRoot('HomePage');
+      }
+      else{
+        return true;
+      }
+    })
+    .catch((error) => {
+      return true;
+    })
+  }
 }
